@@ -6,6 +6,7 @@
 <title>Vigneshwar D — Python Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="./index.css">
+
 </head>
 <body>
 
@@ -14,7 +15,7 @@
 
 <nav>
   <div class="nav-logo">VD.</div>
-  <ul class="nav-links">
+  <ul class="nav-links"><div class="nav-drawer-logo">VD.</div>
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -26,6 +27,7 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <!-- HERO -->
 <section id="hero">
@@ -318,19 +320,24 @@
   // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.querySelector('.nav-links');
+  const navOverlay = document.getElementById('navOverlay');
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+    navOverlay.classList.remove('open');
+  }
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
     navLinks.classList.toggle('open');
+    navOverlay.classList.toggle('open');
   });
+  navOverlay.addEventListener('click', closeMenu);
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      navLinks.classList.remove('open');
-    });
+    link.addEventListener('click', closeMenu);
   });
 
   // Typing effect
-  const words = ['Python Developer', 'Django Expert', 'Full Stack Developer', 'API Builder'];
+  const words = ['Python Developer', 'Django Expert', 'Full Stack Dev', 'API Builder'];
   let wi = 0, ci = 0, deleting = false;
   const el = document.getElementById('typed');
   function type() {
@@ -352,7 +359,7 @@
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
   function animCursor(){
-   cursor.style.left = mx-6+'px'; cursor.style.top = my-6+'px';
+     cursor.style.left = mx-6+'px'; cursor.style.top = my-6+'px';
     rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
     ring.style.left = rx-18+'px'; ring.style.top = ry-18+'px';
     requestAnimationFrame(animCursor);
